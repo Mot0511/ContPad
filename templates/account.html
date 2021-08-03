@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <title>{{ login }}</title>
@@ -31,12 +31,51 @@
         color: white;
         margin-left: 2%;
       }
+	  .pub_post_div{
+		position: fixed;
+		width: 500px;
+		height: 270px;
+		background: gray;
+		border-radius: 10px;
+		top: 30%;
+		margin-left: 30%;
+		padding: 10px;
+		display: none;
+	  }
+	  .pub_post_div h2{
+		color: white;
+	  }
+	  .file{
+		display: none;
+	  }
+	  .pub_post_bt{
+	  margin-top: 10px;
+	  width: 100%;
+	  }
     </style>
 </head>
 <body>
+<div class="pub_post_div" id="pub_post_div">
+<center><h2>Publishing post</h2></center>
+        <form action="/publick" method="POST">
+  <div class="form-group">
+    <label for="exampleInputEmail1">Post name</label>
+    <input type="text" name="login" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter post name">
+  </div>
+  <div class="form-group">
+    <button type="button" class="btn btn-secondary"><label for="exampleFormControlFile1">Select post image</label></button><br>
+    <input type="file" class="form-control-file file" id="exampleFormControlFile1">
+  </div>
+
+  <button type="submit" class="btn btn-primary pub_post_bt">Public post</button>
+   <button type="button" onclick="hide_pub()" class="btn btn-danger pub_post_bt">Cancel</button>
+
+</form>
+
+</div>
     <center><h1>{{ login }}'s account</h1>
     <div class="menu">
-      <button type="button" class="btn btn-primary bt_menu" name="button">New post</button>
+      <button type="button" class="btn btn-primary bt_menu" onclick="show_pub()" name="button">New post</button>
       <a href="/"><button type="button" class="btn btn-secondary bt_menu" name="button">Log out</button></a>
 
     </div></center>
@@ -59,5 +98,13 @@
         <hr>
       </div>
     </div>
+	<script>
+	function show_pub(){
+	document.getElementById('pub_post_div').style = 'display: block';
+	}
+	function hide_pub(){
+	document.getElementById('pub_post_div').style = 'display: none';
+	}
+	</script>
 </body>
 </html>
