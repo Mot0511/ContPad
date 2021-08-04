@@ -52,22 +52,26 @@
 	  margin-top: 10px;
 	  width: 100%;
 	  }
+	  .hide{
+		display: none;
+	  }
     </style>
 </head>
 <body>
 <div class="pub_post_div" id="pub_post_div">
 <center><h2>Publishing post</h2></center>
-        <form action="/publick" method="POST">
+        <form action="/upload" method="POST" enctype="multipart/form-data">
   <div class="form-group">
     <label for="exampleInputEmail1">Post name</label>
-    <input type="text" name="login" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter post name">
+    <input type="text" name="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter post name">
   </div>
   <div class="form-group">
     <button type="button" class="btn btn-secondary"><label for="exampleFormControlFile1">Select post image</label></button><br>
-    <input type="file" class="form-control-file file" id="exampleFormControlFile1">
+    <input type="file" name="file" class="form-control-file file" id="exampleFormControlFile1">
   </div>
 
-  <button type="submit" class="btn btn-primary pub_post_bt">Public post</button>
+  <input type="submit" class="btn btn-primary pub_post_bt" value="Public post">
+  <input type="text" class="hide" name="login" value="{{login}}">
    <button type="button" onclick="hide_pub()" class="btn btn-danger pub_post_bt">Cancel</button>
 
 </form>
