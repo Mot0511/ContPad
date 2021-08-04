@@ -43,6 +43,7 @@ def news(name=None):
 import os
 from flask import Flask, flash, request, redirect, url_for
 from werkzeug.utils import secure_filename
+import sys
 
 UPLOAD_FOLDER = 'tmp'
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
@@ -60,6 +61,9 @@ def upload_file():
         name = request.form.get('name')
         login = request.form.get('login')
         img = 'img'
+        number = random.randint(0, 100000)
+        img = sq.Binary(open(str(number) + '.png', 'rb').read())
+        print(img)
         
         # check if the post request has the file part
         if 'file' not in request.files:
@@ -72,7 +76,7 @@ def upload_file():
             flash('No selected file')
             return redirect(request.url)
         if file and allowed_file(file.filename):
-            filename = secure_filename(str(random.randint(0, 100000)) + '.png')
+            filename = secure_filename(str(number) + '.png')
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             with sq.connect('db.db') as con:
                 cur = con.cursor()
