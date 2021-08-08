@@ -60,7 +60,7 @@
 <body>
 <div class="pub_post_div" id="pub_post_div">
 <center><h2>Publishing post</h2></center>
-        <form action="/upload" method="POST" enctype="multipart/form-data">
+        <form action="/public" method="POST" enctype="multipart/form-data">
   <div class="form-group">
     <label for="exampleInputEmail1">Post name</label>
     <input type="text" name="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter post name">
@@ -88,8 +88,8 @@
         <h2>My posts</h2>
         <hr>
         <div class="post">
-          <img src="" alt="">
-          <h5>Heading</h5>
+          <img src="{{ url_for('static', filename='post_images/' + file_names[0] + '.png') }}" id="post_image" alt="{{post_names[0]}}">
+          <h5 id="post_name">{{post_names[0]}}</h5>
         </div>
 
       </div>
