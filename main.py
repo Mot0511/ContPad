@@ -41,10 +41,10 @@ def login():
                         post_names.append(i[0])
                         
                 if post_names == []:
-                    post_names.append('Posts is not found')
+                    post_names.append('Posts are not found')
                     
                 for i in post_names:
-                    file_names.append(i.replace('', '_'))
+                    file_names.append(i.replace(' ', '_'))
                     
                 print(file_names)
                 
@@ -83,6 +83,7 @@ def read_img(n):
         
 @app.route('/public', methods=['GET', 'POST'])
 def upload_file():
+    file_names = []
     name = request.form.get('name')
     login = request.form.get('login')
     post_names = []
@@ -108,9 +109,22 @@ def upload_file():
             if not(posts == []):
                 for i in posts:
                     post_names.append(i[0])
+
+                posts = cur.execute(f"SELECT name FROM posts WHERE login == '{login}'")
+                if not (posts == []):
+                    for i in posts:
+                        post_names.append(i[0])
+
+                if post_names == []:
+                    post_names.append('Posts are not found')
+
+                for i in post_names:
+                    file_names.append(i.replace(' ', '_'))
+
+                print(file_names)
                     
             
-            return render_template('account.html', login=login, post_names=post_names)
+            return render_template('account.html', login=login, post_names=post_names, file_names=file_names)
             
 
         
